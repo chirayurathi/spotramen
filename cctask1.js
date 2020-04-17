@@ -356,4 +356,19 @@ setInterval(()=>{
     }
     dropbool=!dropbool;
  }, 1000);
-
+const navSlide = ()=>{
+    const burger=$('.burger');
+    const nav=$('nav ul');
+    const navLink=document.querySelectorAll('nav ul li');
+    burger.click(()=>{
+        nav.toggleClass('nav-active');
+        navLink.forEach((link,index)=>{
+            if(link.style.animation){
+                link.style.animation='';
+            }
+            else{
+            link.style.animation=`navFade 0.5s ease forwards ${index/7 +0.5}s`;}
+        });
+    });
+};
+navSlide();
