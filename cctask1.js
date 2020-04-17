@@ -356,7 +356,4 @@ setInterval(()=>{
     }
     dropbool=!dropbool;
  }, 1000);
- setInterval(()=>{
-    carSlide.css('height',carSlide.width()*(4/7)+'px');
- },500);
 
