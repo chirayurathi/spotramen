@@ -214,4 +214,14 @@ input[type="text"]::placeholder {
     .carousel-slide{
         height:300px;
     }
+    .hotspots input{
+        width: 60%;
+    }
+    .hotspots button{
+        width:20%;
+    }
+    #topten .card-container{
+        width:100px;
+        height: 20vh;
+    }
 }
