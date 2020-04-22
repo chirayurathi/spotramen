@@ -92,6 +92,7 @@ nav ul li a.active{
     color: white;
     opacity: 0.7;
     position: absolute;
+    text-align: center;
 }
 .burger div{
     width:20px;
@@ -153,6 +154,7 @@ nav ul li a.active{
     padding: 15% 0;
 }
 .hotspots input{
+    outline: none;
     width: 40%;
     height: 5vh;
     border-radius: 24px;
@@ -160,6 +162,7 @@ nav ul li a.active{
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 30px 0 rgba(0, 0, 0, 0.19);
 }
 .hotspots button{
+    outline: none;
     border-radius: 30px;
     width:7%;
     background:rgba(0,0,0,0.6);
@@ -171,6 +174,79 @@ nav ul li a.active{
 }
 input[type="text"]::placeholder {  
     text-align: center; 
+}
+.hotspots-container{
+    width:90%;
+    margin:50px 5%;
+    justify-content: space-around;
+    align-items: center;
+}
+.flip-container{
+    position: relative;
+    width:200px;
+    height: 40vh;
+    display: inline-block;
+    margin:5% 20px;
+}
+.flip-card{
+    position: absolute;
+    width:100%;
+    height:100%;
+    transition:all 0.5s ease;
+    transform-style: preserve-3d;
+}
+.flip-front{
+    position: absolute;
+    border-radius: 8px;
+    width:100%;
+    height:100%;
+    box-shadow: inset 0 0 0 100vw rgba(0,0,0,0.7);
+    background:url('https://images.unsplash.com/photo-1506084868230-bb9d95c24759?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=634&q=80');
+    background-size: cover;
+    color: whitesmoke;
+    backface-visibility: hidden;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    flex-direction: column;
+    justify-content: space-around;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 2em;
+}
+.flip-back{
+    padding-top: 2%;
+    position: absolute;
+    border-radius: 8px;
+    width:100%;
+    height:100%;
+    background: rgb(17, 17, 17);
+    backface-visibility: hidden;
+    transform: rotateY(180deg);
+    color:whitesmoke;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1em;
+    align-items: center;
+    justify-content: center;
+
+}
+.flip-back .sub-head{
+    padding-bottom:2px;
+    display:inline-block;
+    border-bottom: 1px solid rgb(238, 253, 21);
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin:0;
+    margin-top: 7%;
+}
+.rank{
+    color: rgb(204, 204, 204);
+    font-size: 0.8em;
+    margin-bottom: 1px;
+    margin-top:10%;
+    padding: 0;
+}
+.flip-card:hover{
+    transform: rotateY(180deg);
 }
 @media screen and (max-width:1024px){
     .country-container{
@@ -209,10 +285,10 @@ input[type="text"]::placeholder {
     }
     .carousel-container{
         margin-top:20%;
-        width:80%;
+        width:90%;
     }
     .carousel-slide{
-        height:200px;
+        height:250px;
     }
     .hotspots input{
         width: 60%;
@@ -223,5 +299,17 @@ input[type="text"]::placeholder {
     #topten .card-container{
         width:100px;
         height: 20vh;
+    }
+    .flip-container{
+        width:150px;
+        height: 30vh;
+        margin:5% 5px;
+        font-size: 0.8em;
+    }
+    .flip-front{
+        font-size: 1.3em;
+    }
+    .hotspots-container{
+        margin:50px 1%;
     }
 }

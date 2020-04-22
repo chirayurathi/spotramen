@@ -81,3 +81,17 @@ const navSlide = ()=>{
 navspy();
 carousel();
 navSlide();
+httpRequest = new XMLHttpRequest();
+httpRequest.open('GET',' https://chirayurathi.github.io/spotramenJson/db.json');
+var jsonData = []
+var hotContainer = document.querySelector(".hotspots-container");
+httpRequest.onload= ()=>{
+    jsonData = JSON.parse(httpRequest.responseText);
+    for(var i=0;i<jsonData.length;i++)
+    makeCard(jsonData[i]);
+};
+httpRequest.send();
+const makeCard = (jsonEle)=>{
+    htmlString="<div class='flip-container'><div class='flip-card'><div class='flip-front'><p>"+jsonEle["Brand"]+"</p></div><div class='flip-back'><p class='sub-head'>variety</p><p>"+jsonEle["Variety"]+"</p><p class='sub-head'>style</p><p>"+jsonEle["Style"]+"</p><p class='sub-head'>location</p><p>"+jsonEle["Country"]+"</p><p class='rank'>Ranked "+jsonEle["TopTen"]+"</p></div></div></div>";
+    hotContainer.insertAdjacentHTML('beforeend',htmlString);
+};
