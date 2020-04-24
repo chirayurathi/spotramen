@@ -69,8 +69,15 @@
 </div>
 <div class="sec hotspots" id="hotspots">
   <form onsubmit="return false">
-    <input type="text" value='' placeholder="Enter brand name">
-    <button>submit</button>
+    <input type="text" onkeyup="searchlist()" value='' placeholder="Enter brand name">
+    <div class="drop">
+      <button>Sort by</button>
+    <ul>
+      <li>Brand</li>
+      <li>Country</li>
+      <li>Stars</li>
+    </ul>
+    </div>
   </form>
   <div class="hotspots-container">
   </div>

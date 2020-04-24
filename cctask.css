@@ -153,23 +153,77 @@ nav ul li a.active{
 .country-list{
     padding: 15% 0;
 }
+.variety{
+    font-size: 0.8em;
+}
+.hotspots form{
+    width:50%;
+    margin:100px auto;
+    align-items: center;
+    display: flex;
+}
+.hotspots form ul{
+    position: absolute;
+    width:100%;
+}
 .hotspots input{
+    float:left;
     outline: none;
-    width: 40%;
+    width: 70%;
     height: 5vh;
     border-radius: 24px;
     border:none;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 30px 0 rgba(0, 0, 0, 0.19);
+    margin-right: 5%;
+}
+.drop{
+    position: relative;
+    width:15%;
+    padding: 0;
+}
+.drop ul{
+    top:25px;
+    list-style: none;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    padding: 0;
+    height:120px;
+    background:rgba(0,0,0,0.4);
+    border-radius: 12px;
+    color: whitesmoke;
+    border:1px solid rgb(238, 253, 21);
+    transform: translateY(-10px);
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.25s ease;
+}
+.drop ul:focus{
+
+}
+.drop ul li{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 12px;
+    transition: all 0.25s ease;
+}
+.drop ul li:hover{
+    background: rgba(0, 0, 0, 0.6);
 }
 .hotspots button{
+    float: left;
     outline: none;
     border-radius: 30px;
-    width:7%;
+    width:100%;
     background:rgba(0,0,0,0.6);
     border:1px solid rgb(238, 253, 21);
     color:white;
     height:5vh;
-    margin:0 20px;
+    margin:0;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 30px 0 rgba(0, 0, 0, 0.19);
 }
 input[type="text"]::placeholder {  
@@ -177,7 +231,7 @@ input[type="text"]::placeholder {
 }
 .hotspots-container{
     width:90%;
-    margin:50px 5%;
+    margin:120px auto;
     justify-content: space-around;
     align-items: center;
 }
@@ -186,7 +240,8 @@ input[type="text"]::placeholder {
     width:200px;
     height: 40vh;
     display: inline-block;
-    margin:5% 20px;
+    margin:1.5% 20px;
+    transition: all 0.25s ease;
 }
 .flip-card{
     position: absolute;
@@ -211,7 +266,7 @@ input[type="text"]::placeholder {
     flex-direction: column;
     justify-content: space-around;
     font-family: 'Montserrat', sans-serif;
-    font-size: 2em;
+    font-size: 1.3em;
 }
 .flip-back{
     padding-top: 2%;
@@ -228,6 +283,10 @@ input[type="text"]::placeholder {
     align-items: center;
     justify-content: center;
 
+}
+.flip-back p{
+    margin-top: 10px;
+    margin-bottom: 10px;
 }
 .flip-back .sub-head{
     padding-bottom:2px;
@@ -247,6 +306,14 @@ input[type="text"]::placeholder {
 }
 .flip-card:hover{
     transform: rotateY(180deg);
+}
+#drop-active {
+  opacity: 1;
+  pointer-events: all;
+  transform: translateY(0px);
+}
+.drop ul li p{
+
 }
 @media screen and (max-width:1024px){
     .country-container{
@@ -290,12 +357,15 @@ input[type="text"]::placeholder {
     .carousel-slide{
         height:250px;
     }
-    .hotspots input{
+    .hotspots form{
+        width:80%;
+    }
+    /* .hotspots input{
         width: 60%;
     }
     .hotspots button{
         width:20%;
-    }
+    } */
     #topten .card-container{
         width:100px;
         height: 20vh;
@@ -305,9 +375,6 @@ input[type="text"]::placeholder {
         height: 30vh;
         margin:5% 5px;
         font-size: 0.8em;
-    }
-    .flip-front{
-        font-size: 1.3em;
     }
     .hotspots-container{
         margin:50px 1%;
