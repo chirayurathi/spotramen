@@ -80,12 +80,27 @@ const navSlide = ()=>{
 navspy();
 carousel();
 navSlide();
+var countryHeadder = $('.country-headder');
+var countryContent = $('.country-content');
+countryHeadder.click(function(){
+    var index = countryHeadder.index(this);
+    console.log(index);
+    if(countryContent.eq(index).hasClass('country-content-active')){
+        countryContent.removeClass('country-content-active');
+    }
+    else{
+    countryContent.removeClass('country-content-active');
+    countryContent.eq(index).addClass('country-content-active');}
+});
 httpRequest = new XMLHttpRequest();
-httpRequest.open('GET',' https://chirayurathi.github.io/spotramenJson/db.json');
-var jsonData = []
+httpRequest.open('GET','https://chirayurathi.github.io/spotramenJson/db.json');
+var jsonData = [];
 var hotContainer = document.querySelector(".hotspots-container");
 httpRequest.onload= ()=>{
     loadCards("Brand");
+    jsonData = JSON.parse(httpRequest.responseText);
+    countryMaker();
+    yearsFunction();
 };
 httpRequest.send();
 const loadCards = (para)=>{
@@ -145,14 +160,7 @@ droplist[2].addEventListener('click',()=>{
     console.log("3");
     loadCards("Stars");
 });
-// var sortOptions = document.querySelectorAll(".drop li");
-// for(var i=0;i<3;i++)
-//    { sortOptions[i].addEventListener("click", ()=>{
-//         console.log('nkbh');
-//         loadCards($(this).text());
-//     });
-// } 
-var inputVal = $('input[type="text"]')
+var inputVal = $('input[type="text"]');
 const searchlist = ()=>{
     for(var i=0; i<jsonData.length; i++ ){
         if(jsonData[i]["Brand"].toLowerCase().indexOf(inputVal.val().toLowerCase())>-1){
@@ -163,3 +171,58 @@ const searchlist = ()=>{
         }
     }
 };
+const countryMaker = function(){
+    countryHeadder.each(function(){
+        countryFilter($(this).text(),countryHeadder.index(this))
+    });
+};
+const countryFilter = (cName,index)=>{
+    console.log(jsonData.length);
+    for(var i=0; i<jsonData.length; i++ ){
+        if(jsonData[i]["Country"] == cName){
+            htmlString="<div class='flip-container'><div class='flip-card'><div class='flip-front'><p>"+jsonData[i]["Brand"]+"</p></div><div class='flip-back'><p class='sub-head'>variety</p><p class='variety'>"+jsonData[i]["Variety"]+"</p><p class='sub-head'>style</p><p>"+jsonData[i]["Style"]+"</p><p class='sub-head'>location</p><p>"+jsonData[i]["Country"]+"</p><p class='rank'>Ranked "+jsonData[i]["TopTen"]+"</p></div></div></div>";
+            countryContent.eq(index).append(htmlString);
+
+        } 
+    }
+};
+var years = $('.yeartag');
+var yearsSubList =[Array(10), Array(10), Array(10), Array(10), Array(10)];
+const yearsFunction = function(){ years.each(function(){
+    console.log(jsonData.length)
+    for(var i=0;i<jsonData.length;i++){
+        if(jsonData[i]["TopTen"].indexOf("2012")>-1)
+            yearsSubList[0][Number(jsonData[i]["TopTen"].slice(6,))] = jsonData[i];
+        else if(jsonData[i]["TopTen"].indexOf("2013")>-1)
+            yearsSubList[1][Number(jsonData[i]["TopTen"].slice(6,))] = jsonData[i];
+        else if(jsonData[i]["TopTen"].indexOf("2014")>-1)
+            yearsSubList[2][Number(jsonData[i]["TopTen"].slice(6,))] = jsonData[i];
+        else if(jsonData[i]["TopTen"].indexOf("2015")>-1)
+            yearsSubList[3][Number(jsonData[i]["TopTen"].slice(6,))] = jsonData[i];
+        else if(jsonData[i]["TopTen"].indexOf("2016")>-1)
+            yearsSubList[4][Number(jsonData[i]["TopTen"].slice(6,))] = jsonData[i];
+    }
+});
+var yearActList = yearsSubList[0];
+for(var i=0;i<10;i++){
+    if(yearActList[i]){
+        console.log("check");
+        htmlString="<div class='flip-container'><div class='flip-card'><div class='flip-front'><p>"+yearActList[i]["Brand"]+"</p></div><div class='flip-back'><p class='sub-head'>variety</p><p class='variety'>"+yearActList[i]["Variety"]+"</p><p class='sub-head'>style</p><p>"+yearActList[i]["Style"]+"</p><p class='sub-head'>location</p><p>"+yearActList[i]["Country"]+"</p><p class='rank'>Ranked "+yearActList[i]["TopTen"]+"</p></div></div></div>";
+        $('.tencontainer').append(htmlString);
+    }
+}
+};
+years.click(function(){
+    years.removeClass('yeartag-active');
+    $(this).addClass('yeartag-active');
+    var yearActList = yearsSubList[Number($(this).text())%2012];
+    console.log(yearActList);
+    $('.tencontainer').empty();
+    for(var i=0;i<10;i++){
+        if(!(yearActList[i]===undefined)){
+            console.log("check");
+            htmlString="<div class='flip-container'><div class='flip-card'><div class='flip-front'><p>"+yearActList[i]["Brand"]+"</p></div><div class='flip-back'><p class='sub-head'>variety</p><p class='variety'>"+yearActList[i]["Variety"]+"</p><p class='sub-head'>style</p><p>"+yearActList[i]["Style"]+"</p><p class='sub-head'>location</p><p>"+yearActList[i]["Country"]+"</p><p class='rank'>Ranked "+yearActList[i]["TopTen"]+"</p></div></div></div>";
+            $('.tencontainer').append(htmlString);
+        }
+    }
+});

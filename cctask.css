@@ -115,40 +115,32 @@ nav ul li a.active{
         transform: translateY(0px);
     }
 }
-#topten .card-container{
-    box-shadow: inset 0 0 0 100vw rgba(0,0,0,0.5);
-    background:linear-gradient(rgba(0, 0, 0, 0),rgba(0,0,0,0)),url('https://images.unsplash.com/photo-1482049016688-2d3e1b311543?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=653&q=80');
-    background-size: cover;
-    width:200px;
-    height: 40vh;
-    margin:1% 0;
-    border-radius: 5px;
-    font-family: 'Montserrat', sans-serif;
-    justify-content: center;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    font-size: 2.3em;
-    color: blanchedalmond;
-    font-weight: 0;
-    opacity:1;
+.country-list{
+    margin:0 10%;
+    width:80%;
 }
-.card-strip{
+.country-headder{
     width:100%;
-    background:rgba(0,0,0,0.6);
-    margin:0 1%;
-    border-radius: 5px;
-}
-.country-container{
-    margin:1% 1%;
-    width:22%;
-    height:10vh;
+    height:8vh;
+    align-items: center;
     text-align: center;
-    background:rgba(0,0,0,0.6);
+    background:rgba(0,0,0,0.8);
     font-family: 'Montserrat', sans-serif;
     color: blanchedalmond;
     display:inline-block;
     font-size: 1em;
+    border:1px solid rgb(238, 253, 21);
+}
+.country-content{
+    width:100%;
+    background: rgba(0, 0, 0, 0.6);
+    height:0;
+    transition:all 0.5s ease;
+    opacity: 0;
+}
+.country-content-active{
+    height:800px;
+    opacity: 1;
 }
 .country-list{
     padding: 15% 0;
@@ -158,7 +150,7 @@ nav ul li a.active{
 }
 .hotspots form{
     width:50%;
-    margin:100px auto;
+    margin:110px auto;
     align-items: center;
     display: flex;
 }
@@ -198,9 +190,6 @@ nav ul li a.active{
     opacity: 0;
     pointer-events: none;
     transition: all 0.25s ease;
-}
-.drop ul:focus{
-
 }
 .drop ul li{
     width: 100%;
@@ -284,6 +273,29 @@ input[type="text"]::placeholder {
     justify-content: center;
 
 }
+.year-container{
+    display: flex;
+}
+.yeartag{
+    width:20%;
+    height:8vh;
+    font-size:1.5em;
+    font-family:  'Montserrat', sans-serif;
+    text-align: center;
+    align-items: center;
+    border:1px solid black;
+    background:rgba(0,0,0,0.6);
+    color:whitesmoke;
+    vertical-align: middle;
+    padding-top: 20px
+}
+.tencontainer{
+    background: rgba(0,0,0,0.8);
+}
+.yeartag-active{
+    border-bottom:1px solid rgba(0,0,0,0.8);
+    background: rgba(0,0,0,0.8);
+}
 .flip-back p{
     margin-top: 10px;
     margin-bottom: 10px;
@@ -366,10 +378,6 @@ input[type="text"]::placeholder {
     .hotspots button{
         width:20%;
     } */
-    #topten .card-container{
-        width:100px;
-        height: 20vh;
-    }
     .flip-container{
         width:150px;
         height: 30vh;
@@ -378,5 +386,14 @@ input[type="text"]::placeholder {
     }
     .hotspots-container{
         margin:50px 1%;
+    }
+    .country-list{
+        margin:0 0;
+        width:100%;
+    }
+    .drop{
+        position: relative;
+        width:20%;
+        padding: 0;
     }
 }
