@@ -97,8 +97,8 @@ httpRequest.open('GET','https://chirayurathi.github.io/spotramenJson/db.json');
 var jsonData = [];
 var hotContainer = document.querySelector(".hotspots-container");
 httpRequest.onload= ()=>{
-    loadCards("Brand");
     jsonData = JSON.parse(httpRequest.responseText);
+    loadCards("Brand");
     countryMaker();
     yearsFunction();
 };
@@ -161,13 +161,13 @@ droplist[2].addEventListener('click',()=>{
     loadCards("Stars");
 });
 var inputVal = $('input[type="text"]');
-const searchlist = ()=>{
+const searchlist =function(){
     for(var i=0; i<jsonData.length; i++ ){
         if(jsonData[i]["Brand"].toLowerCase().indexOf(inputVal.val().toLowerCase())>-1){
-            $('.flip-container').eq(i).css('display','inline-block');
+            $('.hotspots-container > .flip-container').eq(i).css('display','inline-block');
         }
         else{
-            $('.flip-container').eq(i).css('display','none');
+            $('.hotspots-container > .flip-container').eq(i).css('display','none');
         }
     }
 };
