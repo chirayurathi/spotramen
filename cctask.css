@@ -295,6 +295,7 @@ input[type="text"]::placeholder {
 .yeartag-active{
     border-bottom:1px solid rgba(0,0,0,0.8);
     background: rgba(0,0,0,0.8);
+    color:rgb(223, 221, 221);
 }
 .flip-back p{
     margin-top: 10px;
@@ -324,9 +325,7 @@ input[type="text"]::placeholder {
   pointer-events: all;
   transform: translateY(0px);
 }
-.drop ul li p{
 
-}
 @media screen and (max-width:1024px){
     .country-container{
         width:28%;
@@ -395,5 +394,10 @@ input[type="text"]::placeholder {
         position: relative;
         width:20%;
         padding: 0;
+    }
+    .yeartag-active{
+        border-bottom:1px solid rgba(0,0,0,0.8);
+        background: rgba(0,0,0,1);
+        color:rgb(223, 221, 221);
     }
 }
