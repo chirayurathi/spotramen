@@ -1,10 +1,16 @@
-$("scroll").on('click',function(e){
-    e.preventDefault();
-    var target = $(this).attr('href');
-    $('html','body').animate({
-        scrollTop: $($(target).offset().top-$('nav').height())
-    },2000);
-})
+// $(".scroll").on('click',function(e){
+//     e.preventDefault();
+//     $('html','body').animate(
+//     {
+//         scrollTop: $($(this).attr('href')).offset().top,
+//     },1000,'linear')
+// });
+$("a[href^='#']").click(function(e) {
+	e.preventDefault();
+	$("body, html").animate({
+		scrollTop: $($(this).attr("href")).offset().top-50
+	},750 );
+});
 const navspy = () => {
     var navs = $('nav ul li a');
     var sec = $('.sec');
