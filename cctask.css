@@ -2,7 +2,6 @@ html{
     scroll-behavior: smooth;
 }
 .sec{
-    margin:8% 0;
     text-align: center;
     padding-bottom: 150px;
     padding-top:0;
@@ -54,23 +53,19 @@ nav ul li a.active{
     border:1px solid rgb(238, 253, 21) ;
     border-radius: 30px;
 }
-#home {}
-#topten {}
-#country {}
-#hotspots {
-    padding:8% 0;
-    height: 92vh;}
 .carousel-container{
     width:60%;
     margin:5% auto;
     overflow: hidden;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 30px 0 rgba(0, 0, 0, 0.19);
     position: relative;
+    max-width: 1050px;
 }
 .carousel-slide{
     width:100%;
     height: 500px;
     display: flex;
+    
     
 }
 .carousel-container i{
@@ -91,7 +86,7 @@ nav ul li a.active{
     margin:1% auto;
     color: white;
     opacity: 0.7;
-    position: absolute;
+    /* position: relative; */
     text-align: center;
 }
 .burger div{
@@ -117,7 +112,9 @@ nav ul li a.active{
 }
 .country-list{
     margin:0 10%;
+    margin-bottom: 100px;
     width:80%;
+    padding: 0;
 }
 .country-headder{
     width:100%;
@@ -133,24 +130,19 @@ nav ul li a.active{
 }
 .country-content{
     width:100%;
+    max-height: 0;
+    overflow: hidden;
     background: rgba(0, 0, 0, 0.6);
-    height:0;
     transition:all 0.5s ease;
-    opacity: 0;
-}
-.country-content-active{
-    height:800px;
-    opacity: 1;
-}
-.country-list{
-    padding: 15% 0;
 }
 .variety{
     font-size: 0.8em;
 }
 .hotspots form{
+    text-align: center;
     width:50%;
     margin:110px auto;
+    margin-top: 0;
     align-items: center;
     display: flex;
 }
@@ -159,6 +151,7 @@ nav ul li a.active{
     width:100%;
 }
 .hotspots input{
+    text-align: center;
     float:left;
     outline: none;
     width: 70%;
@@ -215,9 +208,11 @@ nav ul li a.active{
     margin:0;
     box-shadow: 0 8px 16px 0 rgba(0, 0, 0, 0.2), 0 12px 30px 0 rgba(0, 0, 0, 0.19);
 }
-input[type="text"]::placeholder {  
+input[type="text"]::placeholder
+ {  
     text-align: center; 
 }
+
 .hotspots-container{
     width:90%;
     margin:120px auto;
@@ -291,6 +286,7 @@ input[type="text"]::placeholder {
 }
 .tencontainer{
     background: rgba(0,0,0,0.8);
+    margin-bottom:100px;
 }
 .yeartag-active{
     border-bottom:1px solid rgba(0,0,0,0.8);
@@ -384,7 +380,8 @@ input[type="text"]::placeholder {
         font-size: 0.8em;
     }
     .hotspots-container{
-        margin:50px 1%;
+        margin:50px 0;
+        width:100%;
     }
     .country-list{
         margin:0 0;

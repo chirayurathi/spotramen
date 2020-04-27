@@ -1,3 +1,10 @@
+$("scroll").on('click',function(e){
+    e.preventDefault();
+    var target = $(this).attr('href');
+    $('html','body').animate({
+        scrollTop: $($(target).offset().top-$('nav').height())
+    },2000);
+})
 const navspy = () => {
     var navs = $('nav ul li a');
     var sec = $('.sec');
@@ -77,52 +84,46 @@ const navSlide = () => {
             }
         });
     });
+    for(var i=0;i<navLink.length;i++){
+        navLink[i].addEventListener("click",function(){
+            nav.toggleClass('nav-active');
+            navLink.forEach((link)=>{link.style.animation = '';});
+        });
+    }
 };
 navspy();
 carousel();
 navSlide();
 var countryHeadder = $('.country-headder');
 var countryContent = $('.country-content');
-var countryHeadderjs = document.querySelectorAll('.country-headder');
-var countryContentjs =  document.querySelectorAll('.country-content');
-console.log(countryContentjs.length);
-console.log(countryHeadderjs.length);
-// for(var i=0;i<countryHeadderjs;i++){
-//     countryHeadderjs[i].addEventListener("click",function(){
-//         var child = this.nextElementSibling;
-//         if(child.style.maxHeight){
-//             child.style.maxHeight=null;
-//             child.style.opacity=0;
-//         }
-//         else{
-//             child.style.maxHeight=child.scrollHeight+"px";
-//             child.style.opacity=1;
-//         }
-//     });
-// }
-// for(var i=0;i<countryHeadderjs.length;i++){
-//     countryHeadderjs[i].addEventListener('click',function(){
-//         // if(countryContentjs[i].classList.contains('country-content-active'))
-//         //     countryContentjs[i].classList.remove('country-content-active');
-//         // else{
-//             for(var j=0;j<countryHeadderjs.length;j++){
-//                 countryContentjs[j].classList.remove('country-content-active');
-//             }
-//             countryContentjs[i].classList.add('country-content-active');
-//         // }
-//     });
-// }
-countryHeadder.click(function () {
-    var index = countryHeadder.index(this);
-    console.log(index);
-    if (countryContent.eq(index).hasClass('country-content-active')) {
-        countryContent.removeClass('country-content-active');
+var acc = document.getElementsByClassName("country-headder");
+var i;
+for (i = 0; i < acc.length; i++) {
+  acc[i].addEventListener("click", function() {
+    var panel = this.nextElementSibling;
+    if (panel.style.maxHeight) {
+      panel.style.maxHeight = null;
+    } else {
+        for(var j=0;j<acc.length;j++){
+            if(i!=j){
+            acc[j].nextElementSibling.style.maxHeight=null;
+            }
+        }
+      panel.style.maxHeight = panel.scrollHeight + "px";
     }
-    else {
-        countryContent.removeClass('country-content-active');
-        countryContent.eq(index).addClass('country-content-active');
-    }
-});
+  });
+}
+// countryHeadder.click(function () {
+//     var index = countryHeadder.index(this);
+//     console.log(index);
+//     if (countryContent.eq(index).hasClass('country-content-active')) {
+//         countryContent.removeClass('country-content-active');
+//     }
+//     else {
+//         countryContent.removeClass('country-content-active');
+//         countryContent.eq(index).addClass('country-content-active');
+//     }
+// });
 httpRequest = new XMLHttpRequest();
 httpRequest.open('GET', 'https://chirayurathi.github.io/spotramenJson/db.json');
 var jsonData = [];
