@@ -399,7 +399,7 @@ input[type="text"]::placeholder
     }
     .country-list{
         margin:0 0;
-        width:100%;
+        width:98%;
     }
     .drop{
         position: relative;
