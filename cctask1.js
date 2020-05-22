@@ -5,12 +5,24 @@
 //         scrollTop: $($(this).attr('href')).offset().top,
 //     },1000,'linear')
 // });
+
 $("a[href^='#']").click(function(e) {
 	e.preventDefault();
 	$("body, html").animate({
 		scrollTop: $($(this).attr("href")).offset().top-50
 	},750 );
 });
+
+const flipClick = (e)=>{
+    let FlipCard= $('.flip-card');
+        if($(e).hasClass('flip-active')){
+            $(e).removeClass('flip-active')
+        }
+        else{
+        FlipCard.removeClass('flip-active')
+        $(e).addClass('flip-active');
+        }
+}
 const navspy = () => {
     var navs = $('nav ul li a');
     var sec = $('.sec');
@@ -107,15 +119,21 @@ var i;
 for (i = 0; i < acc.length; i++) {
   acc[i].addEventListener("click", function() {
     var panel = this.nextElementSibling;
+    console.log(this.children[1])
     if (panel.style.maxHeight) {
       panel.style.maxHeight = null;
+      this.children[1].style.transform= "rotate(0deg)" 
     } else {
         for(var j=0;j<acc.length;j++){
             if(i!=j){
             acc[j].nextElementSibling.style.maxHeight=null;
+            acc[j].children[1].style.transform= "rotate(0deg)"
             }
+            panel.style.maxHeight = panel.scrollHeight + "px";
+            this.children[1].style.transform = "rotate(90deg)";
         }
-      panel.style.maxHeight = panel.scrollHeight + "px";
+
+      console.log(this.children[1].style)
     }
   });
 }
@@ -149,7 +167,7 @@ const loadCards = (para) => {
         makeCard(jsonData[i]);
 };
 const makeCard = (jsonEle) => {
-    htmlString = "<div class='flip-container'><div class='flip-card'><div class='flip-front'><p>" + jsonEle["Brand"] + "</p></div><div class='flip-back'><div class='star'><a>"+jsonEle["Stars"]+"</a><i class='fas fa-star'></i></div><p class='sub-head'>variety</p><p class='variety'>" + jsonEle["Variety"] + "</p><p class='sub-head'>style</p><p>" + jsonEle["Style"] + "</p><p class='sub-head'>location</p><p>" + jsonEle["Country"] + "</p><p class='rank'>Ranked " + jsonEle["TopTen"] + "</p></div></div></div>";
+    htmlString = "<div class='flip-container'><div class='flip-card' onclick='flipClick(this)'><div class='flip-front'><p>" + jsonEle["Brand"] + "</p></div><div class='flip-back'><div class='star'><a>"+jsonEle["Stars"]+"</a><i class='fas fa-star'></i></div><p class='sub-head'>variety</p><p class='variety'>" + jsonEle["Variety"] + "</p><p class='sub-head'>style</p><p>" + jsonEle["Style"] + "</p><p class='sub-head'>location</p><p>" + jsonEle["Country"] + "</p><p class='rank'>Ranked " + jsonEle["TopTen"] + "</p></div></div></div>";
     hotContainer.insertAdjacentHTML('beforeend', htmlString);
 };
 const partition = (data, low, high, para) => {
@@ -216,7 +234,7 @@ const countryFilter = (cName, index) => {
     console.log(jsonData.length);
     for (var i = 0; i < jsonData.length; i++) {
         if (jsonData[i]["Country"] == cName) {
-            htmlString = "<div class='flip-container'><div class='flip-card'><div class='flip-front'><p>" + jsonData[i]["Brand"] + "</p></div><div class='flip-back'><div class='star'><a>"+jsonData[i]["Stars"]+"</a><i class='fas fa-star'></i></div><p class='sub-head'>variety</p><p class='variety'>" + jsonData[i]["Variety"] + "</p><p class='sub-head'>style</p><p>" + jsonData[i]["Style"] + "</p><p class='sub-head'>location</p><p>" + jsonData[i]["Country"] + "</p><p class='rank'>Ranked " + jsonData[i]["TopTen"] + "</p></div></div></div>";
+            htmlString = "<div class='flip-container'><div class='flip-card' onclick='flipClick(this)'><div class='flip-front'><p>" + jsonData[i]["Brand"] + "</p></div><div class='flip-back'><div class='star'><a>"+jsonData[i]["Stars"]+"</a><i class='fas fa-star'></i></div><p class='sub-head'>variety</p><p class='variety'>" + jsonData[i]["Variety"] + "</p><p class='sub-head'>style</p><p>" + jsonData[i]["Style"] + "</p><p class='sub-head'>location</p><p>" + jsonData[i]["Country"] + "</p><p class='rank'>Ranked " + jsonData[i]["TopTen"] + "</p></div></div></div>";
             countryContent.eq(index).append(htmlString);
 
         }
@@ -244,7 +262,7 @@ const yearsFunction = function () {
     for (var i = 0; i < 10; i++) {
         if (yearActList[i]) {
             console.log("check");
-            htmlString = "<div class='flip-container'><div class='flip-card'><div class='flip-front'><p>" + yearActList[i]["Brand"] + "</p></div><div class='flip-back'><div class='star'><a>"+yearActList[i]["Stars"]+"</a><i class='fas fa-star'></i></div><p class='sub-head'>variety</p><p class='variety'>" + yearActList[i]["Variety"] + "</p><p class='sub-head'>style</p><p>" + yearActList[i]["Style"] + "</p><p class='sub-head'>location</p><p>" + yearActList[i]["Country"] + "</p><p class='rank'>Ranked " + yearActList[i]["TopTen"] + "</p></div></div></div>";
+            htmlString = "<div class='flip-container'><div class='flip-card' onclick='flipClick(this)'><div class='flip-front'><p>" + yearActList[i]["Brand"] + "</p></div><div class='flip-back'><div class='star'><a>"+yearActList[i]["Stars"]+"</a><i class='fas fa-star'></i></div><p class='sub-head'>variety</p><p class='variety'>" + yearActList[i]["Variety"] + "</p><p class='sub-head'>style</p><p>" + yearActList[i]["Style"] + "</p><p class='sub-head'>location</p><p>" + yearActList[i]["Country"] + "</p><p class='rank'>Ranked " + yearActList[i]["TopTen"] + "</p></div></div></div>";
             $('.tencontainer').append(htmlString);
         }
     }
@@ -258,7 +276,7 @@ years.click(function () {
     for (var i = 0; i < 10; i++) {
         if (!(yearActList[i] === undefined)) {
             console.log("check");
-            htmlString = "<div class='flip-container'><div class='flip-card'><div class='flip-front'><p>" + yearActList[i]["Brand"] + "</p></div><div class='flip-back'><div class='star'><a>"+yearActList[i]["Stars"]+"</a><i class='fas fa-star'></i></div><p class='sub-head'>variety</p><p class='variety'>" + yearActList[i]["Variety"] + "</p><p class='sub-head'>style</p><p>" + yearActList[i]["Style"] + "</p><p class='sub-head'>location</p><p>" + yearActList[i]["Country"] + "</p><p class='rank'>Ranked " + yearActList[i]["TopTen"] + "</p></div></div></div>";
+            htmlString = "<div class='flip-container'><div class='flip-card' onclick='flipClick(this)'><div class='flip-front'><p>" + yearActList[i]["Brand"] + "</p></div><div class='flip-back'><div class='star'><a>"+yearActList[i]["Stars"]+"</a><i class='fas fa-star'></i></div><p class='sub-head'>variety</p><p class='variety'>" + yearActList[i]["Variety"] + "</p><p class='sub-head'>style</p><p>" + yearActList[i]["Style"] + "</p><p class='sub-head'>location</p><p>" + yearActList[i]["Country"] + "</p><p class='rank'>Ranked " + yearActList[i]["TopTen"] + "</p></div></div></div>";
             $('.tencontainer').append(htmlString);
         }
     }

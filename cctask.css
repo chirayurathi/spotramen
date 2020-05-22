@@ -117,6 +117,7 @@ nav ul li a.active{
     padding: 0;
 }
 .country-headder{
+    position: relative;
     width:100%;
     height:8vh;
     align-items: center;
@@ -127,13 +128,17 @@ nav ul li a.active{
     display:inline-block;
     font-size: 1em;
     border:1px solid rgb(238, 253, 21);
+    border-radius: 10px;
 }
 .country-content{
-    width:100%;
+    width:98.5%;
+    margin: auto;
     max-height: 0;
     overflow: hidden;
     background: rgba(0, 0, 0, 0.6);
     transition:all 0.5s ease;
+    border-top-right-radius: -5px  ;
+    border-top-left-radius: -5px ;
 }
 .variety{
     font-size: 0.8em;
@@ -222,7 +227,7 @@ input[type="text"]::placeholder
 .flip-container{
     position: relative;
     width:200px;
-    height: 40vh;
+    height: 330px;
     display: inline-block;
     margin:1.5% 20px;
     transition: all 0.25s ease;
@@ -233,6 +238,15 @@ input[type="text"]::placeholder
     height:100%;
     transition:all 0.5s ease;
     transform-style: preserve-3d;
+}
+.country-headder i{
+    position: absolute;
+    z-index: 20;
+    right: 5px;
+    margin: 3vh 0;
+    font-size: 2vh;
+    top:0;
+    transition: all 0.5s ease;
 }
 .flip-front{
     position: absolute;
@@ -313,13 +327,13 @@ input[type="text"]::placeholder
     margin-top:10%;
     padding: 0;
 }
-.flip-card:hover{
-    transform: rotateY(180deg);
-}
 #drop-active {
   opacity: 1;
   pointer-events: all;
   transform: translateY(0px);
+}
+.flip-active{
+    transform: rotateY(180deg);
 }
 
 @media screen and (max-width:1024px){
@@ -375,7 +389,7 @@ input[type="text"]::placeholder
     } */
     .flip-container{
         width:150px;
-        height: 30vh;
+        height: 250px;
         margin:5% 5px;
         font-size: 0.8em;
     }
