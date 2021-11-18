@@ -186,6 +186,7 @@ const partition = (data, low, high, para) => {
     data[high] = temp;
     return (i + 1);
 };
+
 const sortAlg = (data, low, high, para) => {
     if (low < high) {
         var pi = partition(data, low, high, para);
@@ -236,7 +237,6 @@ const countryFilter = (cName, index) => {
         if (jsonData[i]["Country"] == cName) {
             htmlString = "<div class='flip-container'><div class='flip-card' onclick='flipClick(this)'><div class='flip-front'><p>" + jsonData[i]["Brand"] + "</p></div><div class='flip-back'><div class='star'><a>"+jsonData[i]["Stars"]+"</a><i class='fas fa-star'></i></div><p class='sub-head'>variety</p><p class='variety'>" + jsonData[i]["Variety"] + "</p><p class='sub-head'>style</p><p>" + jsonData[i]["Style"] + "</p><p class='sub-head'>location</p><p>" + jsonData[i]["Country"] + "</p><p class='rank'>Ranked " + jsonData[i]["TopTen"] + "</p></div></div></div>";
             countryContent.eq(index).append(htmlString);
-
         }
     }
 };
